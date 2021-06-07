@@ -1,0 +1,28 @@
+{
+  "name": "stallbot",
+  "version": "1.0.0",
+  "description": "rem's personal bot, now using slashcord",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ."
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "rem",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0.5.0",
+    "beautify": "^0.0.8",
+    "bufferutil": "^4.0.3",
+    "chalk": "^4.1.1",
+    "discord-slash-commands-client": "^1.2.1",
+    "discord.js": "^12.5.3",
+    "erlpack": "github:discord/erlpack",
+    "nodemon": "^2.0.7",
+    "slashcord": "^1.4.6",
+    "sodium": "^3.0.2",
+    "utf-8-validate": "^5.0.5",
+    "zlib-sync": "^0.1.7"
+  }
+}
