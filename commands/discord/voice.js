@@ -17,6 +17,9 @@ module.exports = {
     }
   ],
   callback: ({ message, channel, client, interaction, args }) => {
-      interaction.reply('disabled')
+    const guild = client.guilds.cache.get(interaction.guild_id)
+    const member = guild.members.cache.get(interaction.member.user.id);
+    const voiceChannel = member.voice.channel;
+    interaction.reply('disabled')
   }
 }
