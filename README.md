@@ -1,2 +1,2 @@
 # Stallman
-The Discord bot used in Molten's Place.
+Beef's personal bot.

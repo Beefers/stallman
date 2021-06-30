@@ -1,10 +1,10 @@
 module.exports = {
-    name: 'ubuntu',
-    description: "Ubuntu is the devil",
+    name: 'linus',
+    description: "Hello! This is Linus Torvalds.",
     cooldown: false,
     testOnly: true,
     execute: async ({ interaction }) => {
         interaction.acknowledge();
-        await interaction.edit("https://www.youtube.com/watch?v=CP8CNp-vksc");
+        await interaction.edit("https://youtu.be/-duTjbQuCxk");
     },
 };

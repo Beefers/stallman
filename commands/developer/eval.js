@@ -3,6 +3,7 @@ const beautify = require("beautify");
 const fetch = require('node-fetch');
 
 module.exports = {
+    name: 'eval',
     description: "Runs code as JS. Only available to developers.",
     testOnly: true,
     cooldown: false,
@@ -34,7 +35,7 @@ module.exports = {
             const took = Date.now() - before;
 
             const embed = new MessageEmbed()
-                .setColor("RANDOM")
+                .setColor("#2F3136")
                 .addField("Operation:", `\`\`\`js\n${beautify(args[0].value, { format: "js" })}\n\`\`\``)
                 .addField(`Time taken:`, `(${took}ms)`, true)
 

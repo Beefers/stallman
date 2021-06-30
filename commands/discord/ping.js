@@ -1,4 +1,5 @@
 module.exports = {
+    name: 'ping',
     description: "Get the websocket latency",
     cooldown: false,
     testOnly: true,

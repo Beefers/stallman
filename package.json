@@ -1,7 +1,7 @@
 {
   "name": "stallbot",
-  "version": "1.0.0",
-  "description": "Beef's personal bot, now using Slashcord",
+  "version": "1.0.2",
+  "description": "Beef's personal bot",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ."
@@ -20,10 +20,9 @@
     "discord.js": "^12.5.3",
     "erlpack": "github:discord/erlpack",
     "nodemon": "^2.0.7",
-    "slashcord": "^1.4.6",
+    "slashcord": "github:MysticIsSus/slashcord",
     "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.5",
-    "wokcommands": "^1.3.6",
     "zlib-sync": "^0.1.7"
   }
 }

@@ -1,4 +1,5 @@
 module.exports = {
+  name: 'voice',
   description: 'Voice channel commands.',
   cooldown: false,
   testOnly: true,

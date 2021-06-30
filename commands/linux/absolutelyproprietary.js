@@ -1,4 +1,5 @@
 module.exports = {
+    name: 'absolutelyproprietary',
     description: "gnu",
     cooldown: false,
     testOnly: true,
