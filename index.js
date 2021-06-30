@@ -4,36 +4,55 @@
 // Import Discord
 const Discord = require("discord.js");
 
-// Import Slashcord
-const Slashcord = require("slashcord").default;
+// Import WOKCommands
+const WOKCommands = require('wokcommands')
 
-// Define the Client
-const client = new Discord.Client();
+// Define the client
+const client = new Discord.Client({
+    // Use recommended partials for the built-in help menu
+    partials: ['MESSAGE', 'REACTION']
+})
 
 // Add our config to the client
 client.config = require('./config/bot')
 
-// Import our interactions library
-const interactions = require("discord-slash-commands-client");
-
-// Define an interactions client
-const iclient = new interactions.Client(
-  client.config.discord.token,
-  client.config.discord.clientId
-);
-
-// Add it to the main discord.js client
-client.iclient = iclient
-
 // When the client is ready, Initialize Slashcord and it's arguments
 client.on("ready", () => {
-   new Slashcord(client, "commands", {
-      testServers: [client.config.routes.server.id],
-      botOwners: [client.config.users.owner.id],
-      useButtons: true,
-    })
+  // const instance = new Slashcord(client, "commands", {
+  //     testServers: [client.config.routes.server.id],
+  //     botOwners: [client.config.users.owner.id],
+  //     useButtons: true,
+  // })
+  new WOKCommands(client, {
+    // The name of the local folder for your command files
+    commandsDir: 'commands',
+    
+    // The name of the local folder for your feature files
+    featuresDir: 'events',
+    
+    // If WOKCommands warnings should be shown or not
+    showWarns: true,
+    
+    // Prevent triggering by other bots
+    ignoreBots: true,
+    
+    // What server/guild IDs are used for testing only commands & features
+    // Can be a single string if there is only 1 ID
+    testServers: [client.config.routes.server.id],
+    
+    // What built-in commands should be disabled.
+    // Note that you can overwrite a command as well by using
+    // the same name as the command file name.
+    disabledDefaultCommands: [
+        'help',
+        'command',
+        'language',
+        'prefix',
+        'requiredrole'
+    ]
+  })
    
-   client.user.setActivity(client.config.vanity.activity.value, { type: client.config.vanity.activity.type });
+  client.user.setActivity(client.config.vanity.activity.value, { type: client.config.vanity.activity.type });
 });
 
 // Log in with token

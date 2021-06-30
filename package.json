@@ -1,7 +1,7 @@
 {
   "name": "stallbot",
   "version": "1.0.0",
-  "description": "rem's personal bot, now using slashcord",
+  "description": "Beef's personal bot, now using Slashcord",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ."
@@ -23,6 +23,7 @@
     "slashcord": "^1.4.6",
     "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.5",
+    "wokcommands": "^1.3.6",
     "zlib-sync": "^0.1.7"
   }
 }
