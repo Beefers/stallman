@@ -1,5 +1,5 @@
 //? Richard Stallman
-//? A Discord bot made with Slashcord
+//? Beef's personal Discord bot.
 
 // Import fs
 const fs = require('fs');
@@ -7,15 +7,10 @@ const fs = require('fs');
 // Import Discord
 const Discord = require("discord.js");
 
-// Import Slashcord
-const Slashcord = require('slashcord').default;
-
 // Define the client
-const client = new Discord.Client({
-    partials: ['MESSAGE', 'REACTION']
-})
+const client = new Discord.Client({ intents: [Discord.Intents.ALL] });
 
-// Make a commands collection to make up for Slashcord not having one
+// Make a commands collection
 client.commands = new Discord.Collection();
 
 // Command management
@@ -29,21 +24,33 @@ for (const folder of commandFolders) {
 	}
 }
 
-console.log(client.commands.map(command => command.name).join(', '))
-
 // Add our config to the client
 client.config = require('./config/bot')
 
-// When the client is ready, Initialize Slashcord and it's arguments
-client.on("ready", () => {
-  const instance = new Slashcord(client, "commands", {
-      testServers: [client.config.routes.server.id],
-      botOwners: [client.config.users.owner.id],
-      useButtons: true,
-  })
-
+// When the client is ready
+client.once("ready", () => {
   // Set the activity
   client.user.setActivity(client.config.vanity.activity.value, { type: client.config.vanity.activity.type });
+
+  // Fetch our application
+  if (!client.application?.owner) client.application?.fetch();
+
+  // Log all commands
+  console.log(client.commands.map(command => command.name).join(', '))
+
+  // Remove all commands
+  client.guilds.cache.get(client.config.routes.guild.id).commands.set([])
+    .then(console.log)
+    .catch(console.error);
+
+  // Register commands
+  client.commands.array().forEach(command => console.log())
+});
+
+// Handle interactions
+client.on('interaction', async interaction => {
+	if (!interaction.isCommand()) return;
+	if (interaction.commandName === 'ping') await interaction.reply('Pong!');
 });
 
 // Log in with token
