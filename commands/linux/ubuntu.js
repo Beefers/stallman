@@ -1,10 +1,8 @@
 module.exports = {
     name: 'ubuntu',
     description: "Ubuntu is the devil",
-    cooldown: false,
-    testOnly: true,
-    execute: async ({ interaction }) => {
-        interaction.acknowledge();
-        await interaction.edit("https://www.youtube.com/watch?v=CP8CNp-vksc");
+    execute: async ( interaction ) => {
+        
+        await interaction.editReply("https://www.youtube.com/watch?v=CP8CNp-vksc");
     },
 };

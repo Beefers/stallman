@@ -38,19 +38,35 @@ client.once("ready", () => {
   // Log all commands
   console.log(client.commands.map(command => command.name).join(', '))
 
-  // Remove all commands
-  client.guilds.cache.get(client.config.routes.guild.id).commands.set([])
-    .then(console.log)
-    .catch(console.error);
+  var fetchedCommands = []
 
   // Register commands
-  client.commands.array().forEach(command => console.log())
+  client.commands.array().forEach(command => {
+    fetchedCommands.push({
+      name: command.name,
+      description: command.description,
+      options: command.options,
+    })
+  })
+  // Set commands
+  client.guilds.cache.get(client.config.routes.server.id).commands.set(fetchedCommands)
+    .catch(console.error);
 });
 
 // Handle interactions
 client.on('interaction', async interaction => {
 	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'ping') await interaction.reply('Pong!');
+	const command = interaction.commandName;
+
+	if (!client.commands.has(command)) return;
+
+	try {
+    await interaction.defer()
+		client.commands.get(command).execute(interaction);
+	} catch (error) {
+		console.error(error);
+		// interaction.channel.send(`Command raised an exception\n\`\`\`${error}\`\`\``);
+	}
 });
 
 // Log in with token

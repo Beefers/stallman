@@ -1,6 +1,6 @@
 {
   "name": "stallbot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Beef's personal bot",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "keywords": [
     "discord"
   ],
-  "author": "rem",
+  "author": "Beef",
   "license": "MIT",
   "dependencies": {
     "@discordjs/voice": "^0.5.1",

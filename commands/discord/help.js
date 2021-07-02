@@ -3,36 +3,38 @@ const Discord = require('discord.js')
 module.exports = {
     name: 'help',
     description: "Lists out every command.",
-    cooldown: false,
     options: [
         {
             name: 'command',
             description: 'What command should I fetch info on?',
-            type: 3,
+            type: 'STRING',
         }
     ],
     testOnly: true,
-    execute: async ({ client, interaction, args }) => {
-        interaction.acknowledge();
+    execute: async ( interaction ) => {
+        const client = interaction.client;
+
         const data = [];
 		const { commands } = client;
+
+        const args = interaction.options.get('command')
 
         if (!args) {
             data.push(commands.map(command => command.name).join(', '))
             const helpEmbed = new Discord.MessageEmbed()
                 .setTitle('Here\'s a list of all my commands:')
                 .setColor('#2F3136')
-                .setDescription(data)
+                .setDescription(data.toString())
                 .setFooter(`You can send /help [command name] to get info on a specific command!`);
 
-            return interaction.edit(helpEmbed)
+            return await interaction.editReply({ embeds: [helpEmbed] })
         }
 
-        const name = args[0].value.toLowerCase();
+        const name = args.value.toLowerCase();
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return interaction.edit('That\'s not a valid command!');
+            return await interaction.editReply('That\'s not a valid command!');
         }
 
         data.push(`**Name:** ${command.name}`);
@@ -44,8 +46,8 @@ module.exports = {
         const commandEmbed = new Discord.MessageEmbed()
             .setTitle(command.name)
             .setColor('#2F3136')
-            .setDescription(data)
+            .setDescription(data.join('\n'))
 
-        await interaction.edit(commandEmbed);
+        await interaction.editReply({ embeds: [commandEmbed] });
     },
 };
