@@ -1,9 +1,8 @@
 module.exports = {
     name: 'ping',
     description: "Get the websocket latency",
-    testOnly: true,
-    execute: async ( client, interaction ) => {
-
+    execute: async ( interaction ) => {
+        const client = interaction.client
         await interaction.editReply(`Websocket latency is ${Math.round(client.ws.ping)}ms.`);
     },
 };

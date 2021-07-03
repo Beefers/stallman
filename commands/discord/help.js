@@ -10,7 +10,6 @@ module.exports = {
             type: 'STRING',
         }
     ],
-    testOnly: true,
     execute: async ( interaction ) => {
         const client = interaction.client;
 
