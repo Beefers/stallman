@@ -36,21 +36,22 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setColor("#2F3136")
-                .addField("Operation:", `\`\`\`js\n${beautify(toEval, { format: "js" })}\n\`\`\``)
+                .addField("Operation:", `\`\`\`js\n${beautify(toEval.toString(), { format: "js" })}\n\`\`\``)
                 .addField(`Time taken:`, `(${took}ms)`, true)
 
                 if (evaluated) {
-                    embed.addField("Evaluated:", evaluated, true)
+                    embed.addField("Evaluated:", evaluated.toString(), true)
                     embed.addField("TypeOf:", typeof(evaluated), true)
                 }
 
             return await interaction.editReply({ embeds: [embed] })
         } catch (error) {
+            console.log(error)
             const embed = new MessageEmbed()
                 .setColor("RED")
                 .setTitle(":x: Error")
                 .setDescription("Sorry, but I couldn't evaluate that.")
-                .addField("Operation:", `\`\`\`js\n${beautify(toEval, { format: "js" })}\n\`\`\``)
+                .addField("Operation:", `\`\`\`js\n${beautify(toEval.toString(), { format: "js" })}\n\`\`\``)
                 .addField("**Error:**", `\`\`\`${error}\`\`\``, true)
 
             return await interaction.editReply({ embeds: [embed] });

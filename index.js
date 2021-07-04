@@ -48,9 +48,12 @@ client.once("ready", () => {
       options: command.options,
     })
   })
+
   // Set commands
-  client.guilds.cache.get(client.config.routes.server.id).commands.set(fetchedCommands)
+  client.config.routes.servers.forEach(id => {
+    client.guilds.cache.get(id).commands.set(fetchedCommands)
     .catch(console.error);
+  })
 });
 
 // Handle interactions
@@ -61,11 +64,16 @@ client.on('interaction', async interaction => {
 	if (!client.commands.has(command)) return;
 
 	try {
-    await interaction.defer()
+    if (command.ephemeral === true) {
+      await interaction.defer({ ephemeral: true })
+    } else {
+      await interaction.defer()
+    }
+
 		client.commands.get(command).execute(interaction);
 	} catch (error) {
 		console.error(error);
-		// interaction.channel.send(`Command raised an exception\n\`\`\`${error}\`\`\``);
+		interaction.channel.send(`Command raised an exception\n\`\`\`${error}\`\`\``);
 	}
 });
 

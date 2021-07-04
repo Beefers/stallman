@@ -16,9 +16,9 @@ module.exports = {
     },
     
     routes: {
-        server: {
-            id: 'put-your-main-server-id-here',
-        },
+        servers: [
+            'put-your-main-server-id-here', 'and-optionally-multiple-others',
+        ],
     },
 
     users: {

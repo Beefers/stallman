@@ -12,12 +12,15 @@
   "author": "Beef",
   "license": "MIT",
   "dependencies": {
+    "@discordjs/opus": "^0.5.3",
     "@discordjs/voice": "^0.5.1",
     "beautify": "^0.0.8",
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.1",
     "discord.js": "github:discordjs/discord.js",
     "erlpack": "github:discord/erlpack",
+    "ffmpeg-static": "^4.4.0",
+    "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.5",
     "zlib-sync": "^0.1.7"
   },
