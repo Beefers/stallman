@@ -59,18 +59,18 @@ client.once("ready", () => {
 // Handle interactions
 client.on('interaction', async interaction => {
 	if (!interaction.isCommand()) return;
-	const command = interaction.commandName;
+  if (!client.commands.has(interaction.commandName)) return;
 
-	if (!client.commands.has(command)) return;
+	const command = client.commands.get(interaction.commandName);
 
 	try {
-    if (command.ephemeral === true) {
+    if (command.ephemeral) {
       await interaction.defer({ ephemeral: true })
     } else {
       await interaction.defer()
     }
 
-		client.commands.get(command).execute(interaction);
+		command.execute(interaction);
 	} catch (error) {
 		console.error(error);
 		interaction.channel.send(`Command raised an exception\n\`\`\`${error}\`\`\``);

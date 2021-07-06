@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'eval',
-    description: "Runs code as JS. Only available to developers.",
+    description: 'Runs code as JS. Only available to developers.',
     options: [
         {
             name: 'code',

@@ -1,3 +1,6 @@
 Move away from Slashcord
 Reason: It simply doesn't provide enough. Discord.JS v13 would be a much better and less annoying option.
-Done: False
+Done: True
+=========================================================================================================
+                                We now have our own command handler.
+=========================================================================================================

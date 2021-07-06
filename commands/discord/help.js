@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
     name: 'help',
-    description: "Lists out every command.",
+    description: 'Lists out every command.',
     options: [
         {
             name: 'command',
