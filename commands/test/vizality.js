@@ -5,6 +5,20 @@ module.exports = {
     description: 'why do i make these things - beef',
     execute: async ( interaction ) => {
         const client = interaction.client
+
+        const crashEmbed = new Discord.MessageEmbed()
+            .setColor('#2F3136')
+            .setTitle('Well, this is awkward')
+            .setDescription('Looks like Discord has crashed unexpectedly....\nWe\'ve tracked the error and will get right on it.')
+
+        const crashRow = new Discord.MessageActionRow()
+        .addComponents(
+            new Discord.MessageButton()
+                .setCustomID('crashButton')
+                .setStyle('PRIMARY')
+                .setLabel('Reload')
+        )
+
         const dashboardRow = new Discord.MessageActionRow()
                     .addComponents(
                         new Discord.MessageButton()
@@ -38,8 +52,8 @@ module.exports = {
 
                 client.on('interaction', async buttonInteraction => {
                     if (!buttonInteraction.isButton()) return;
-                    await buttonInteraction.defer({ ephemeral: true });
-                    await interaction.editReply()
+                    // await buttonInteraction.defer();
+                    await buttonInteraction.message.edit({ content: '\u200b', embeds: [crashEmbed], components: [crashRow] })
                 });
     },
 };
