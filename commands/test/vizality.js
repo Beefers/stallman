@@ -93,6 +93,7 @@ module.exports = {
 
                     case 'pluginsButton':
                         await buttonInteraction.message.edit({ content: '\u200B', embeds: [pluginsEmbed], components: [pluginsRow] })
+                    break
                 } 
             } catch(error) {
                 console.log(error)
