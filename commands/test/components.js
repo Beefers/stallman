@@ -9,11 +9,11 @@ module.exports = {
             description: 'Sends a message with buttons.',
             type: 'SUB_COMMAND',
         },
-        {
-            name: 'board',
-            description: 'Sends a drawing board made with buttons and ActionRows.',
-            type: 'SUB_COMMAND',
-        },
+        // {
+        //     name: 'board',
+        //     description: 'Sends a drawing board made with buttons and ActionRows.',
+        //     type: 'SUB_COMMAND',
+        // },
         {
             name: 'select',
             description: 'Sends a message with a select component.',
@@ -29,17 +29,17 @@ module.exports = {
                 const row = new Discord.MessageActionRow()
                     .addComponents(
                         new Discord.MessageButton()
-                        .setCustomID('red')
+                        .setCustomId('red')
                         .setStyle('DANGER')
                         .setLabel('This is a red button')
                     )
                     
                 interaction.editReply({ content: "Buttons!", components: [row] })
 
-                client.on('interaction', async buttonInteraction => {
+                client.on('interactionCreate', async buttonInteraction => {
                     if (!buttonInteraction.isButton()) return;
                     await buttonInteraction.defer({ ephemeral: true });
-                    await buttonInteraction.editReply(`You clicked the ${buttonInteraction.customID} button.`)
+                    await buttonInteraction.editReply(`You clicked the ${buttonInteraction.customId} button.`)
                 });
             break
 
@@ -47,30 +47,30 @@ module.exports = {
                 // const boardRow = new Discord.MessageActionRow()
                 //     .addComponents(
                 //         new Discord.MessageButton()
-                //             .setCustomID('boardButton1')
+                //             .setCustomId('boardButton1')
                 //             .setStyle('SECONDARY')
                 //             .setLabel('\u200B'),
                 //         new Discord.MessageButton()
-                //             .setCustomID('boardButton2')
+                //             .setCustomId('boardButton2')
                 //             .setStyle('SECONDARY')
                 //             .setLabel('\u200B'),
                 //         new Discord.MessageButton()
-                //             .setCustomID('boardButton3')
+                //             .setCustomId('boardButton3')
                 //             .setStyle('SECONDARY')
                 //             .setLabel('\u200B'),
                 //         new Discord.MessageButton()
-                //             .setCustomID('boardButton4')
+                //             .setCustomId('boardButton4')
                 //             .setStyle('SECONDARY')
                 //             .setLabel('\u200B'),
                 //         new Discord.MessageButton()
-                //             .setCustomID('boardButton5')
+                //             .setCustomId('boardButton5')
                 //             .setStyle('SECONDARY')
                 //             .setLabel('\u200B'),
                 //     )
                     
                 // interaction.editReply({ content: '\u200B', components: [boardRow, boardRow, boardRow, boardRow, boardRow] })
 
-                // client.on('interaction', async buttonInteraction => {
+                // client.on('interactionCreate', async buttonInteraction => {
                 //     if (!buttonInteraction.isButton()) return;
                 //     await buttonInteraction.defer({ ephemeral: true });
                 //     await interaction.editReply()
@@ -82,7 +82,7 @@ module.exports = {
                 const selectRow = new Discord.MessageActionRow()
                     .addComponents(
                         new Discord.MessageSelectMenu()
-                            .setCustomID('select')
+                            .setCustomId('select')
                             .setPlaceholder('Select an option')
                             .addOptions([
                                 {
@@ -99,7 +99,7 @@ module.exports = {
                     );
                     await interaction.editReply({ content: 'Select!', components: [selectRow] });
                     
-                    client.on('interaction', async selectInteraction => {
+                    client.on('interactionCreate', async selectInteraction => {
                         if (!selectInteraction.isSelectMenu()) return;
                         await selectInteraction.defer({ ephemeral: true });
                         await selectInteraction.editReply(`You selected ${selectInteraction.values[0]}.`)

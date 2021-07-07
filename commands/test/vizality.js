@@ -16,7 +16,7 @@ module.exports = {
         const crashRow = new Discord.MessageActionRow()
         .addComponents(
             new Discord.MessageButton()
-                .setCustomID('crashButton')
+                .setCustomId('crashButton')
                 .setStyle('PRIMARY')
                 .setLabel('Reload')
         )
@@ -31,22 +31,22 @@ module.exports = {
         const dashboardRow = new Discord.MessageActionRow()
             .addComponents(
                 new Discord.MessageButton()
-                    .setCustomID('pluginsButton')
+                    .setCustomId('pluginsButton')
                     .setStyle('PRIMARY')
                     .setLabel('Browse Plugins'),
                     
                 new Discord.MessageButton()
-                    .setCustomID('themesButton')
+                    .setCustomId('themesButton')
                     .setStyle('PRIMARY')
                     .setLabel('Browse Themes'),
 
                 new Discord.MessageButton()
-                    .setCustomID('devButton')
+                    .setCustomId('devButton')
                     .setStyle('PRIMARY')
                     .setLabel('Learn How'),
 
                 new Discord.MessageButton()
-                    .setCustomID('docsButton')
+                    .setCustomId('docsButton')
                     .setStyle('PRIMARY')
                     .setLabel('Start Reading'),
             )
@@ -62,7 +62,7 @@ module.exports = {
         const pluginsRow = new Discord.MessageActionRow()
             .addComponents(
                 new Discord.MessageSelectMenu()
-                    .setCustomID('pluginsSelect')
+                    .setCustomId('pluginsSelect')
                     .setPlaceholder('Select a plugin')
                     .addOptions([
                         {
@@ -82,11 +82,11 @@ module.exports = {
             
         interaction.editReply({ content: '\u200B', embeds: [dashboardEmbed], components: [dashboardRow] })
 
-        client.on('interaction', async buttonInteraction => {
+        client.on('interactionCreate', async buttonInteraction => {
             if (!buttonInteraction.isButton()) return;
             // await buttonInteraction.defer();
             try {
-                switch (buttonInteraction.customID) {
+                switch (buttonInteraction.customId) {
                     case 'crashButton':
                         await buttonInteraction.message.edit({ content: '\u200B', embeds: [dashboardEmbed], components: [dashboardRow] })
                     break

@@ -8,7 +8,8 @@ const fs = require('fs');
 const Discord = require("discord.js");
 
 // Define the client
-const client = new Discord.Client({ intents: [Discord.Intents.ALL] });
+// const client = new Discord.Client({ intents: [Discord.Intents.ALL] });
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 
 // Make a commands collection
 client.commands = new Discord.Collection();
@@ -57,7 +58,7 @@ client.once("ready", () => {
 });
 
 // Handle interactions
-client.on('interaction', async interaction => {
+client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
   if (!client.commands.has(interaction.commandName)) return;
 
