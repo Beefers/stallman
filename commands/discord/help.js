@@ -14,7 +14,7 @@ module.exports = {
         const client = interaction.client;
 
         const data = [];
-		const { commands } = client;
+		const { localCommands } = client;
 
         const args = interaction.options.get('command')
 

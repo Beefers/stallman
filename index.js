@@ -12,7 +12,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 
 // Make a commands collection
-client.commands = new Discord.Collection();
+client.localCommands = new Discord.Collection();
 
 // Command management
 const commandFolders = fs.readdirSync('./commands');
@@ -21,7 +21,7 @@ for (const folder of commandFolders) {
 	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
 	for (const file of commandFiles) {
 		const command = require(`./commands/${folder}/${file}`);
-		client.commands.set(command.name, command);
+		client.localCommands.set(command.name, command);
 	}
 }
 
@@ -37,13 +37,13 @@ client.once("ready", () => {
   if (!client.application?.owner) client.application?.fetch();
 
   // Log all commands
-  console.log(client.commands.map(command => command.name).join(', '))
+  console.log(client.localCommands.map(command => command.name).join(', '))
 
-  var fetchedCommands = []
+  var fetchedLocalCommands = []
 
   // Register commands
-  client.commands.array().forEach(command => {
-    fetchedCommands.push({
+  client.localCommands.array().forEach(command => {
+    fetchedLocalCommands.push({
       name: command.name,
       description: command.description,
       options: command.options,
@@ -52,7 +52,16 @@ client.once("ready", () => {
 
   // Set commands
   client.config.routes.servers.forEach(id => {
-    client.guilds.cache.get(id).commands.set(fetchedCommands)
+    client.guilds.cache.get(id).commands.set(fetchedLocalCommands)
+    .catch(console.error);
+  })
+
+  // Permissions
+  client.config.routes.servers.forEach(id => {
+    const guild = client.guilds.cache.get(id)
+    guild.commands.fetch()
+    // .then(commands => { console.log(`${guild.name} - ${guild.id} | ${commands.join(', ')}`) })
+    .then(commands => { console.log(commands.array().forEach(command => { console.log(command.name) })) })
     .catch(console.error);
   })
 });
@@ -60,9 +69,9 @@ client.once("ready", () => {
 // Handle interactions
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
-  if (!client.commands.has(interaction.commandName)) return;
+  if (!client.localCommands.has(interaction.commandName)) return;
 
-	const command = client.commands.get(interaction.commandName);
+	const command = client.localCommands.get(interaction.commandName);
 
 	try {
     if (command.ephemeral) {
