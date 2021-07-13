@@ -4,27 +4,23 @@
     "description": "Beef's personal Discord bot.",
     "main": "index.js",
     "scripts": {
-      "start": "nodemon ."
+        "start": "nodemon ."
     },
     "keywords": [
-      "discord"
+        "discord"
     ],
     "author": "Beef",
     "license": "MIT",
     "dependencies": {
-      "@discordjs/opus": "^0.5.3",
-      "@discordjs/voice": "^0.5.1",
-      "beautify": "^0.0.8",
-      "bufferutil": "^4.0.3",
-      "chalk": "^4.1.1",
-      "discord.js": "^13.0.0-dev",
-      "ffmpeg-static": "^4.4.0",
-      "sodium": "^3.0.2",
-      "utf-8-validate": "^5.0.5",
-      "zlib-sync": "^0.1.7"
+        "beautify": "^0.0.8",
+        "bufferutil": "^4.0.3",
+        "chalk": "^4.1.1",
+        "discord.js": "^13.0.0-dev",
+        "ffmpeg-static": "^4.4.0",
+        "utf-8-validate": "^5.0.5",
+        "zlib-sync": "^0.1.7"
     },
     "devDependencies": {
-      "nodemon": "^2.0.9"
+        "nodemon": "^2.0.9"
     }
-  }
-  
+}
