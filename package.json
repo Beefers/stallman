@@ -4,7 +4,7 @@
     "description": "Beef's personal Discord bot.",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon ."
+        "heroku": "nodemon ."
     },
     "keywords": [
         "discord"
