@@ -13,16 +13,16 @@ async function initInteractionHandler(client) {
         // If checks pass, fetch the command from our localCommands array and make it a variable
         const command = client.localCommands.get(interaction.commandName);
 
-        // Check if the command has the ephemeral property before deferring, and then defer it as specified
+        // Check if the command has the ephemeral property, and then defer it as specified
         if (command.ephemeral) {
             await interaction.defer({ ephemeral: true });
         } else {
             await interaction.defer();
         }
 
-        // Finally, attempt to execute the command, and catch erros
+        // Finally, attempt to execute the command, and catch errors
         try {
-            // Execute, passing in the interactiob object
+            // Execute, passing in the interaction object
             command.execute(interaction)
         } catch(error) {
             // Log the error
