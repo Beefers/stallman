@@ -27,6 +27,7 @@ async function initInteractionHandler(client) {
         } catch(error) {
             // Log the error
             client.logs.errorLog(error)
+            
             // Notify the user
             // TODO: Check if this works? In the legacy versions, similar code did not work, except in odd circumstances.
             await interaction.editReply({ content: `Action raised an exception\n\`\`\`${error}\`\`\`` })
