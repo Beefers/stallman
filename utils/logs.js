@@ -6,7 +6,6 @@ module.exports = {
     //? A console.log wrapper used for logging any info about the client, and making it look nice.
     clientLog: async function(content) { console.log(chalk.blue('Stallman-Client') + chalk.grey(' | ') +  chalk.white(content)) },
 
-
     //* warnLog
     //? A console.warn wrapper for logging warnings, making them distinguishable.
     warnLog: async function(content) { console.log(chalk.magenta('Stallman-Warn') + chalk.grey(' | ') +  chalk.white(content)) },

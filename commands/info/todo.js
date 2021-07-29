@@ -6,10 +6,10 @@ module.exports = {
     category: 'info',
     execute: async ( interaction ) => {
         const client = interaction.client
-        const { items } = require('../../globals/todo')
+        const { items } = require('../../utils/todo')
         const todoEmbed = new Discord.MessageEmbed()
             .setTitle('Stallman To-do List')
-            .setDescription('Here\'s everything the Stallman dev(s) needs to do:')
+            .setDescription('Here\'s everything Beef needs to do:')
             .setColor('#2F3136');
         
         items.forEach(item => {

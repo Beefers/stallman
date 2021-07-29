@@ -19,7 +19,7 @@ client.config = require('./config/bot')
 
 // Add some needed globals to the client
 // Logging
-client.logs = require('./globals/logs')
+client.logs = require('./utils/logs')
 
 // Run actions when the client is ready
 client.once('ready', () => {

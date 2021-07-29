@@ -20,6 +20,11 @@ module.exports = {
             name: 'Migrate commands',
             description: 'We need to migrate every single command that was in the bot pre-rewrite to this new codebase.',
             status: 'done',
+        },
+        {
+            name: 'Rate-limit handler',
+            description: 'Finish rate-limit handler',
+            status: 'in_progress',
         }
     ]
 }
