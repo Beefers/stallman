@@ -84,22 +84,20 @@ module.exports = {
         interaction.editReply({ content: '\u200B', embeds: [dashboardEmbed], components: [dashboardRow] })
 
         client.on('interactionCreate', async buttonInteraction => {
-            if (!buttonInteraction.isButton()) return;
+            // if (!buttonInteraction.isButton()) return;
             // await buttonInteraction.defer();
-            try {
-                switch (buttonInteraction.customId) {
-                    case 'crashButton':
-                        await buttonInteraction.message.edit({ content: '\u200B', embeds: [dashboardEmbed], components: [dashboardRow] })
-                    break
+            switch (buttonInteraction.customId) {
+                case 'crashButton':
+                    await buttonInteraction.message.edit({ content: '\u200B', embeds: [dashboardEmbed], components: [dashboardRow] })
+                break
 
-                    case 'pluginsButton':
-                        await buttonInteraction.message.edit({ content: '\u200B', embeds: [pluginsEmbed], components: [pluginsRow] })
-                    break
-                } 
-            } catch(error) {
-                console.log(error)
-                await buttonInteraction.message.edit({ content: '\u200b', embeds: [crashEmbed], components: [crashRow] })
-            }
+                case 'pluginsButton':
+                    await buttonInteraction.message.edit({ content: '\u200B', embeds: [pluginsEmbed], components: [pluginsRow] })
+                break
+                default:
+                    await buttonInteraction.message.edit({ content: '\u200b', embeds: [crashEmbed], components: [crashRow] })
+                break
+            } 
         });
     },
 };

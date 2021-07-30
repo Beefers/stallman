@@ -22,6 +22,6 @@ module.exports = {
             todoEmbed.addField(item.name, details.join('\n\n'))
         })
 
-        await interaction.editReply({ content: '\u200B', embeds: [todoEmbed] });
+        await interaction.editReply({ embeds: [todoEmbed] });
     },
 };

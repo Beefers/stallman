@@ -23,14 +23,13 @@ async function initInteractionHandler(client) {
         // Finally, attempt to execute the command, and catch errors
         try {
             // Execute, passing in the interaction object
-            command.execute(interaction)
+            await command.execute(interaction)
         } catch(error) {
             // Log the error
             client.logs.errorLog(error)
             
             // Notify the user
-            // TODO: Check if this works? In the legacy versions, similar code did not work, except in odd circumstances.
-            await interaction.editReply({ content: `Action raised an exception\n\`\`\`${error}\`\`\`` })
+            await interaction.editReply({ content: `Looks like something went wrong. Exception: \n\`\`\`${error}\`\`\`` })
         }
     })
 }

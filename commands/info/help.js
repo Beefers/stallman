@@ -20,11 +20,14 @@ module.exports = {
         const args = interaction.options.get('command')
 
         if (!args) {
-            data.push(localCommands.map(command => command.name).join(', '))
+            // data.push(localCommands.map(command => command.name).join(', '))
+            localCommands.array().forEach(command => {
+                data.push(`**${command.name}** - ${command.description}`)
+            })
             const helpEmbed = new Discord.MessageEmbed()
                 .setTitle('Here\'s a list of all my commands:')
                 .setColor('#2F3136')
-                .setDescription(data.toString())
+                .setDescription(data.join('\n'))
                 .setFooter(`You can send /help [command name] to get info on a specific command!`);
 
             return await interaction.editReply({ embeds: [helpEmbed] })
