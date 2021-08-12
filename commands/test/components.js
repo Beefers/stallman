@@ -24,7 +24,7 @@ module.exports = {
     execute: async ( interaction ) => {
         const client = interaction.client
 
-        const args = interaction.options.array()
+        const args = interaction.options
         switch(args[0].name) {
             case 'buttons':
                 const row = new Discord.MessageActionRow()

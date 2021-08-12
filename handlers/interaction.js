@@ -1,4 +1,4 @@
-async function initInteractionHandler(client) {
+async function init(client) {
     // Fetch our application, if not already fetched
     if (!client.application?.owner) client.application?.fetch();
 
@@ -15,9 +15,9 @@ async function initInteractionHandler(client) {
 
         // Check if the command has the ephemeral property, and then defer it as specified
         if (command.ephemeral) {
-            await interaction.defer({ ephemeral: true });
+            await interaction.deferReply({ ephemeral: true });
         } else {
-            await interaction.defer();
+            await interaction.deferReply();
         }
 
         // Finally, attempt to execute the command, and catch errors
@@ -34,4 +34,4 @@ async function initInteractionHandler(client) {
     })
 }
 
-module.exports = { initInteractionHandler }
+module.exports = { init }

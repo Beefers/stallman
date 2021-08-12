@@ -4,12 +4,8 @@
 // Import Discord.JS as a constructor
 const Discord = require('discord.js');
 
-// TODO: Perhaps migrate handlers into a single file?
-// Import command handler
-const { initCommandHandler } = require('./handlers/command');
-
-// Import interaction handler
-const { initInteractionHandler } = require('./handlers/interaction')
+// Import handlers
+const { commandHandler, permissionsHandler, interactionHandler } = require('./util/handlers');
 
 // Make a client from the Discord constructor and define it
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
@@ -19,15 +15,18 @@ client.config = require('./config/bot')
 
 // Add some needed globals to the client
 // Logging
-client.logs = require('./utils/logs')
+client.logs = require('./util/logs')
 
 // Run actions when the client is ready
 client.once('ready', () => {
     // Initialise command handler
-    initCommandHandler(client)
+    commandHandler.init(client)
+
+    // Initialise permissions handler
+    permissionsHandler.init(client)
 
     // Initialise interaction handler
-    initInteractionHandler(client)
+    interactionHandler.init(client)
 
     // Set activity based on config file
     client.user.setActivity(client.config.vanity.activity.value, { type: client.config.vanity.activity.type }); 

@@ -7,7 +7,7 @@ const fs = require('fs')
 // Import path
 const path = require('path')
 
-async function initCommandHandler(client) {
+async function init(client) {
     // Make a commands collection
     client.localCommands = new Discord.Collection();
 
@@ -33,7 +33,7 @@ async function initCommandHandler(client) {
     var commandsToRegister = []
 
     // Register each command with their properties
-    client.localCommands.array().forEach(command => {
+    client.localCommands.forEach(command => {
         commandsToRegister.push({
             name: command.name,
             description: command.description,
@@ -49,4 +49,4 @@ async function initCommandHandler(client) {
     })
 }
 
-module.exports = { initCommandHandler }
+module.exports = { init }

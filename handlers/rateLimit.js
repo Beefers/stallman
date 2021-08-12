@@ -1,8 +1,8 @@
 // TODO: Finish
 
-async function initRateLimitHandler(client) {
-    let rateLimited;
+let rateLimited;
 
+async function init(client) {
     client.on("rateLimit", (rateLimitInfo) => {
         client.logs.warn(`I am rate-limited for ${rateLimitInfo.timeout}ms`)
         rateLimited = true;
@@ -11,4 +11,4 @@ async function initRateLimitHandler(client) {
     })
 }
 
-module.exports = { initRateLimitHandler, rateLimited }
+module.exports = { init, rateLimited }

@@ -21,7 +21,7 @@ module.exports = {
 
         if (!args) {
             // data.push(localCommands.map(command => command.name).join(', '))
-            localCommands.array().forEach(command => {
+            localCommands.forEach(command => {
                 data.push(`**${command.name}** - ${command.description}`)
             })
             const helpEmbed = new Discord.MessageEmbed()

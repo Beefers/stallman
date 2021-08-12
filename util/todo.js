@@ -8,7 +8,7 @@ module.exports = {
         {
             name: 'Refactor commands',
             description: 'Now that every command is migrated from legacy, we should rewrite/refactor each one.',
-            status: 'in_progress',
+            status: 'done',
         },
         {
             name: 'Message handler',

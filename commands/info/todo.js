@@ -6,7 +6,7 @@ module.exports = {
     category: 'info',
     execute: async ( interaction ) => {
         const client = interaction.client
-        const { items } = require('../../utils/todo')
+        const { items } = require('../../util/todo')
         const todoEmbed = new Discord.MessageEmbed()
             .setTitle('Stallman To-do List')
             .setDescription('Here\'s everything Beef needs to do:')

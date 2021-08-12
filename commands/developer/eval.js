@@ -1,5 +1,3 @@
-// TODO: Native permissions for this command
-
 const { MessageEmbed } = require('discord.js')
 const beautify = require("beautify");
 
@@ -7,6 +5,15 @@ module.exports = {
     name: 'eval',
     description: 'Runs code as JS. Only available to developers.',
     category: 'developer',
+    defaultPermission: false,
+    permissions: [
+        {
+            // TODO: Attempt to fetch owner id from config without requiring it - may be impossible?
+            id: '257109471589957632',
+            type: 'USER',
+            permission: true,
+        }
+    ],
     options: [
         {
             name: 'code',
