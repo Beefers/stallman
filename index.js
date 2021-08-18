@@ -23,7 +23,7 @@ client.once('ready', () => {
     commandHandler.init(client)
 
     // Initialise permissions handler
-    permissionsHandler.init(client)
+    // permissionsHandler.init(client)
 
     // Initialise interaction handler
     interactionHandler.init(client)

@@ -12,5 +12,5 @@ module.exports = {
 
     //* errorLog
     //? A console.error wrapper used for logging any errors, and making it easily visible.
-    errorLog: async function(content) { console.error(chalk.red('Stallman-Error') + chalk.grey('  | ') +  chalk.white(content)) },
+    errorLog: async function(content) { console.error(chalk.red('Stallman-Error') + chalk.grey(' | ') +  chalk.white(content)) },
 }

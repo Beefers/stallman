@@ -3,7 +3,7 @@ module.exports = {
         {
             name: 'Command permissions',
             description: 'Discord.JS has native support for Slash Command permissions. We need to implement this into our command handler.',
-            status: 'no_progress',
+            status: 'in_progress',
         },
         {
             name: 'Refactor commands',
@@ -13,7 +13,7 @@ module.exports = {
         {
             name: 'Message handler',
             description: 'Perhaps implement a message handler to allow for non-slash commands.',
-            status: 'no_progress',
+            status: 'scrapped',
             optional: true,
         },
         {

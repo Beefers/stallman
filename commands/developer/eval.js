@@ -55,7 +55,7 @@ module.exports = {
 
             return await interaction.editReply({ embeds: [embed] })
         } catch (error) {
-            console.log(error)
+            client.logs.errorLog(error)
             const embed = new MessageEmbed()
                 .setColor("RED")
                 .setTitle(":x: Error")
